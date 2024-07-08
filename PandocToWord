@@ -1,4 +1,4 @@
 foreach ($file in Get-ChildItem -Include *.md -Recurse -Force) {
     $output = [System.IO.Path]::ChangeExtension($file.FullName, ".docx")
-    pandoc $file.FullName -o $output
+    pandoc $file.FullName -o $output --reference-doc=reference.docx
 }
