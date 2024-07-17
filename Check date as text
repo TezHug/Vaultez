@@ -1,0 +1,14 @@
+=AND(
+    LEN(O2)=10,
+    MID(O2,5,1)="-",
+    MID(O2,8,1)="-",
+    ISNUMBER(--LEFT(O2,4)),
+    ISNUMBER(--MID(O2,6,2)),
+    ISNUMBER(--RIGHT(O2,2)),
+    --LEFT(O2,4)>=1700,
+    --LEFT(O2,4)<=2024,
+    --MID(O2,6,2)>=1,
+    --MID(O2,6,2)<=12,
+    --RIGHT(O2,2)>=1,
+    --RIGHT(O2,2)<=DAY(EOMONTH(DATE(--LEFT(O2,4),--MID(O2,6,2),1),0))
+)
