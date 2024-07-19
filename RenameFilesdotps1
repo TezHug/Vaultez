@@ -1,0 +1,23 @@
+# Import the CSV file
+$csvData = Import-Csv -Path "renameANC.csv" -Header "OldName", "NewName"
+
+# Loop through each row in the CSV
+foreach ($row in $csvData) {
+    $oldName = $row.OldName
+    $newName = $row.NewName
+
+    # Check if the file exists
+    if (Test-Path $oldName) {
+        # Rename the file
+        Rename-Item -Path $oldName -NewName $newName -ErrorAction SilentlyContinue
+
+        # Provide feedback
+        if ($?) {
+            Write-Host "Renamed: $oldName -> $newName"
+        } else {
+            Write-Host "Failed to rename: $oldName" -ForegroundColor Red
+        }
+    } else {
+        Write-Host "File not found: $oldName" -ForegroundColor Yellow
+    }
+}
